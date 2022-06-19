@@ -9,7 +9,7 @@ train = dict(
     #    parser=dict(
     #        type='LineJsonParser',
     #        keys=['filename', 'text'])),
-    img_prefix=f'{data_root}/imgs/training',
+    img_prefix=f'{data_root}/imgs',
     pipeline=None)
 
 test = dict(
@@ -20,7 +20,7 @@ test = dict(
     #    parser=dict(
     #        type='LineJsonParser',
     #        keys=['filename', 'text'])),
-    img_prefix=f'{data_root}/imgs/test',
+    img_prefix=f'{data_root}/imgs',
     pipeline=None)
 
 train_list = [train]
