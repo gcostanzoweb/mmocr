@@ -1,6 +1,6 @@
 _base_ = [
     '../../_base_/default_runtime.py',
-    '../../_base_/det_models/ocr_mask_rcnn_r50_fpn_ohem_poly.py',
+    '../../_base_/det_models/ocr_mask_rcnn_r50_fpn_ohem.py',
     '../../_base_/schedules/schedule_sgd_160e.py',
     '../../_base_/det_datasets/bid.py',
     '../../_base_/det_pipelines/maskrcnn_pipeline.py'
