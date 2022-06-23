@@ -2,12 +2,12 @@
 # dictionary size is 36 + 1 (<BOS/EOS>).
 # TODO: Automatically update num_chars based on the configuration of
 # label_convertor
-num_chars = 37
+num_chars = 38
 max_seq_len = 26
 
 label_convertor = dict(
     type='ABIConvertor',
-    dict_type='DICT36',
+    dict_type='DICT37',
     with_unknown=False,
     with_padding=False,
     lower=True,

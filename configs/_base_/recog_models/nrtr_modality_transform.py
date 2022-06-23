@@ -1,5 +1,5 @@
 label_convertor = dict(
-    type='AttnConvertor', dict_type='DICT36', with_unknown=True, lower=True)
+    type='AttnConvertor', dict_type='DICT37', with_unknown=True, lower=True)
 
 model = dict(
     type='NRTR',

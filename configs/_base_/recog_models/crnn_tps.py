@@ -1,6 +1,6 @@
 # model
 label_convertor = dict(
-    type='CTCConvertor', dict_type='DICT36', with_unknown=False, lower=True)
+    type='CTCConvertor', dict_type='DICT37', with_unknown=False, lower=True)
 
 model = dict(
     type='CRNNNet',

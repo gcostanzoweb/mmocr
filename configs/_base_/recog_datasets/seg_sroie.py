@@ -1,7 +1,7 @@
 prefix = 'data/sroie'
 
 train = dict(
-    type='OCRDataset',
+    type='OCRSegDataset',
     img_prefix=f'{prefix}/crops/training',
     ann_file=f'{prefix}/train_label.jsonl',
     loader=dict(
