@@ -1,7 +1,8 @@
 _base_ = [
     '../../_base_/default_runtime.py',
-    '../../_base_/recog_pipelines/satrn_pipeline.py',
-    '../../_base_/recog_datasets/sroie.py'
+    '../../_base_/schedules/schedule_adam_step_5e.py',
+    '../../_base_/recog_pipelines/sar_pipeline.py',
+    '../../_base_/recog_datasets/bid.py'
 ]
 
 train_list = {{_base_.train_list}}
@@ -14,41 +15,30 @@ label_convertor = dict(
     type='AttnConvertor', dict_type='DICT90', with_unknown=True)
 
 model = dict(
-    type='SATRN',
-    backbone=dict(type='ShallowCNN', input_channels=3, hidden_dim=512),
+    type='SARNet',
+    backbone=dict(type='ResNet31OCR'),
     encoder=dict(
-        type='SatrnEncoder',
-        n_layers=12,
-        n_head=8,
-        d_k=512 // 8,
-        d_v=512 // 8,
-        d_model=512,
-        n_position=100,
-        d_inner=512 * 4,
-        dropout=0.1),
+        type='SAREncoder',
+        enc_bi_rnn=False,
+        enc_do_rnn=0.1,
+        enc_gru=False,
+    ),
     decoder=dict(
-        type='NRTRDecoder',
-        n_layers=6,
-        d_embedding=512,
-        n_head=8,
-        d_model=512,
-        d_inner=512 * 4,
-        d_k=512 // 8,
-        d_v=512 // 8),
-    loss=dict(type='TFLoss'),
+        type='SequentialSARDecoder',
+        enc_bi_rnn=False,
+        dec_bi_rnn=False,
+        dec_do_rnn=0,
+        dec_gru=False,
+        pred_dropout=0.1,
+        d_k=512,
+        pred_concat=True),
+    loss=dict(type='SARLoss'),
     label_convertor=label_convertor,
-    max_seq_len=25)
-
-# optimizer
-optimizer = dict(type='Adam', lr=3e-4)
-optimizer_config = dict(grad_clip=None)
-# learning policy
-lr_config = dict(policy='step', step=[3, 4])
-total_epochs = 6
+    max_seq_len=30)
 
 data = dict(
     samples_per_gpu=64,
-    workers_per_gpu=4,
+    workers_per_gpu=2,
     val_dataloader=dict(samples_per_gpu=1),
     test_dataloader=dict(samples_per_gpu=1),
     train=dict(

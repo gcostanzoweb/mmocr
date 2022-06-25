@@ -1,7 +1,7 @@
 _base_ = [
     '../../_base_/default_runtime.py',
     '../../_base_/recog_pipelines/satrn_pipeline.py',
-    '../../_base_/recog_datasets/sroie.py'
+    '../../_base_/recog_datasets/funsd.py'
 ]
 
 train_list = {{_base_.train_list}}

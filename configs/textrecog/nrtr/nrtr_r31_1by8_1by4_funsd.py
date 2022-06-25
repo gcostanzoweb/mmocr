@@ -2,7 +2,7 @@ _base_ = [
     '../../_base_/default_runtime.py',
     '../../_base_/schedules/schedule_adam_step_6e.py',
     '../../_base_/recog_pipelines/nrtr_pipeline.py',
-    '../../_base_/recog_datasets/sroie.py'
+    '../../_base_/recog_datasets/funsd.py'
 ]
 
 train_list = {{_base_.train_list}}
@@ -21,7 +21,7 @@ model = dict(
         layers=[1, 2, 5, 3],
         channels=[32, 64, 128, 256, 512, 512],
         stage4_pool_cfg=dict(kernel_size=(2, 1), stride=(2, 1)),
-        last_stage_pool=True),
+        last_stage_pool=False),
     encoder=dict(type='NRTREncoder'),
     decoder=dict(type='NRTRDecoder'),
     loss=dict(type='TFLoss'),
@@ -29,7 +29,7 @@ model = dict(
     max_seq_len=40)
 
 data = dict(
-    samples_per_gpu=128,
+    samples_per_gpu=64,
     workers_per_gpu=4,
     train=dict(
         type='UniformConcatDataset',

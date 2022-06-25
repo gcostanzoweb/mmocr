@@ -1,5 +1,5 @@
 label_convertor = dict(
-    type='AttnConvertor', dict_type='DICT91', with_unknown=True)
+    type='AttnConvertor', dict_type='DICT90', with_unknown=True)
 
 hybrid_decoder = dict(type='SequenceAttentionDecoder')
 

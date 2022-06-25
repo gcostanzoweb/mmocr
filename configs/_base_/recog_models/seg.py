@@ -1,5 +1,5 @@
 label_convertor = dict(
-    type='SegConvertor', dict_type='DICT37', with_unknown=True, lower=True)
+    type='SegConvertor', dict_type='DICT36', with_unknown=True, lower=True)
 
 model = dict(
     type='SegRecognizer',

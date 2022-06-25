@@ -1,8 +1,9 @@
 _base_ = [
     '../../_base_/default_runtime.py',
+    '../../_base_/recog_models/robust_scanner.py',
     '../../_base_/schedules/schedule_adam_step_5e.py',
     '../../_base_/recog_pipelines/sar_pipeline.py',
-    '../../_base_/recog_datasets/sroie.py'
+    '../../_base_/recog_datasets/bid.py'
 ]
 
 train_list = {{_base_.train_list}}
@@ -10,31 +11,6 @@ test_list = {{_base_.test_list}}
 
 train_pipeline = {{_base_.train_pipeline}}
 test_pipeline = {{_base_.test_pipeline}}
-
-label_convertor = dict(
-    type='AttnConvertor', dict_type='DICT90', with_unknown=True)
-
-model = dict(
-    type='SARNet',
-    backbone=dict(type='ResNet31OCR'),
-    encoder=dict(
-        type='SAREncoder',
-        enc_bi_rnn=False,
-        enc_do_rnn=0.1,
-        enc_gru=False,
-    ),
-    decoder=dict(
-        type='SequentialSARDecoder',
-        enc_bi_rnn=False,
-        dec_bi_rnn=False,
-        dec_do_rnn=0,
-        dec_gru=False,
-        pred_dropout=0.1,
-        d_k=512,
-        pred_concat=True),
-    loss=dict(type='SARLoss'),
-    label_convertor=label_convertor,
-    max_seq_len=30)
 
 data = dict(
     samples_per_gpu=64,

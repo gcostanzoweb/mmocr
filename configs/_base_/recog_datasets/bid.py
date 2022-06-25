@@ -1,4 +1,4 @@
-prefix = 'data/sroie'
+prefix = 'data/funsd'
 
 train = dict(
     type='OCRDataset',
@@ -17,7 +17,7 @@ train = dict(
 test = dict(
     type='OCRDataset',
     img_prefix=f'{prefix}/crops',
-    ann_file=f'{prefix}/test_label.jsonl',
+    ann_file=f'{prefix}/val_label.jsonl',
     loader=dict(
         type='AnnFileLoader',
         repeat=1,
